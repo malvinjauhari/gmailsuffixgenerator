@@ -3,6 +3,10 @@
 
 **Gmail Suffix Generator** adalah alat sederhana berbasis web yang memungkinkan kamu membuat berbagai variasi alamat email dari satu akun Gmail menggunakan fitur alias Gmail (`+alias`). Alamat ini sangat cocok digunakan untuk pendaftaran akun, filter email, dan pelacakan aktivitas tertentu tanpa perlu membuat banyak akun Gmail.
 
+## ✨ Live Website
+
+Akses Website Disini -> https://github.com/malvinjauhari/gmailsuffixgenerator
+
 ## ✨ Fitur
 
 - Input alamat Gmail utama
