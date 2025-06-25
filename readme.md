@@ -5,7 +5,7 @@
 
 ## ✨ Live Website
 
-Akses Website Disini -> https://github.com/malvinjauhari/gmailsuffixgenerator
+Akses Website Disini -> [malvinjauhari/gmailsuffixgenerator](https://malvinjauhari.github.io/gmailsuffixgenerator/)
 
 ## ✨ Fitur
 
