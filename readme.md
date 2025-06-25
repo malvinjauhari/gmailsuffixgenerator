@@ -13,23 +13,24 @@ Akses Website Disini -> [malvinjauhari/gmailsuffixgenerator](https://malvinjauha
 - Pilih jumlah alias yang ingin dibuat
 - Output langsung muncul di layar
 - Hasil dapat disalin dengan tombol **Copy**
-
+- Hasil dapat didownload dalam format **.txt**
+  
 ## 🚀 Cara Menggunakan
 
-1. Masukkan alamat Gmail utama kamu (misal: `akjuh.ar@gmail.com`)
+1. Masukkan alamat Gmail utama kamu (misal: `emailgue@gmail.com`)
 2. Pilih berapa banyak alias yang ingin kamu buat
 3. Klik tombol **Generate**
 4. Salin hasilnya dengan tombol **Copy** yang tersedia
 
 Contoh hasil:
 ```
-akjuh.ar+1@gmail.com  
-akjuh.ar+2@gmail.com  
-akjuh.ar+3@gmail.com  
+emailgue.rmj@gmail.com
+emailgue.szv@gmail.com
+e.m.ailgue@gmail.com
 ...dan seterusnya
 ```
 
-> Semua email yang dikirim ke alamat di atas akan tetap masuk ke inbox `akjuh.ar@gmail.com`
+> Semua email yang dikirim ke alamat di atas akan tetap masuk ke inbox `emailgue@gmail.com`
 
 ## 🔧 Teknologi yang Digunakan
 
