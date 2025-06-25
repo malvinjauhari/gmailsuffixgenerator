@@ -1,0 +1,288 @@
+/* Gmail Suffix Generator By Alvin Jauhari  */
+
+/* Basic reset and font */
+body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 20px;
+    /* Blue/Purple Gradient Background */
+    background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+    display: flex;
+    flex-direction: column; /* Mengatur tata letak vertikal */
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: #333;
+    box-sizing: border-box;
+    position: relative; /* Untuk posisi footer */
+    overflow-x: hidden; /* Tetap sembunyikan scroll horizontal */
+    cursor: default; /* Kursor default untuk body */
+}
+
+/* Main container for the app - Glassmorphism effect */
+.container {
+    scroll-behavior: none;
+    background: rgba(255, 255, 255, 0.15); /* Semi-transparent white */
+    backdrop-filter: blur(10px); /* Glassmorphism blur effect */
+    -webkit-backdrop-filter: blur(10px); /* For Safari */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Subtle border */
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3); /* Stronger shadow for depth */
+    width: 100%;
+    max-width: 600px; /* Max width for larger screens */
+    display: flex;
+    flex-direction: column;
+    gap: 35px; /* Ditingkatkan untuk lebih banyak ruang antar bagian */
+    box-sizing: border-box;
+    color: #f0f0f0; /* Lighter text for contrast */
+    margin-bottom: 60px; /* Ruang untuk footer tetap dipertahankan */
+}
+
+h1 {
+    text-align: center;
+    color: #ffffff; /* White color for headings */
+    margin-bottom: 20px;
+    font-size: 2.2em; /* Slightly larger heading */
+    font-weight: 700; /* Bolder */
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+h2 {
+    font-size: 1.3em;
+    color: #e0e0e0; /* Lighter grey for subheadings */
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+/* Section styling */
+.section {
+    scroll-behavior: none;
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Ditingkatkan untuk lebih banyak ruang di dalam bagian */
+}
+
+/* Input and button styling */
+input[type="text"],
+input[type="number"] {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Lighter border */
+    border-radius: 8px;
+    font-size: 1em;
+    box-sizing: border-box;
+    background: rgba(255, 255, 255, 0.1); /* Semi-transparent background */
+    color: #ffffff; /* White text for input */
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease; /* Transisi untuk fokus */
+    cursor: text; /* Kursor teks untuk input */
+}
+
+input[type="text"]::placeholder,
+input[type="number"]::placeholder {
+    color: rgba(255, 255, 255, 0.7); /* Lighter placeholder */
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus {
+    outline: none;
+    border-color: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.4); /* Bayangan fokus yang lebih menonjol */
+    background: rgba(255, 255, 255, 0.2); /* Slightly more opaque on focus */
+}
+
+.button-group {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+button {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1em;
+    cursor: pointer; /* Kursor pointer untuk tombol */
+    transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+button.primary {
+    background-color: #3f51b5; /* Warna primer baru (biru/ungu gelap) */
+    color: white;
+    box-shadow: 0 4px 10px rgba(63, 81, 181, 0.4);
+}
+
+button.primary:hover {
+    background-color: #2c3e87; /* Warna hover primer yang lebih gelap */
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(63, 81, 181, 0.5);
+}
+
+button.primary:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 5px rgba(63, 81, 181, 0.3);
+}
+
+button.secondary {
+    background-color: rgba(255, 255, 255, 0.2); /* Warna sekunder glassmorphism */
+    color: white;
+    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.15);
+}
+
+button.secondary:hover {
+    background-color: rgba(255, 255, 255, 0.3); /* Warna hover sekunder */
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(255, 255, 255, 0.2);
+}
+
+button.secondary:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 5px rgba(255, 255, 255, 0.1);
+}
+
+/* Output section styling */
+#output-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 400px; /* Batasan tinggi untuk scroll internal daftar varian */
+    overflow-y: auto; /* Memungkinkan scroll untuk daftar varian */
+    background: rgba(255, 255, 255, 0.1); /* Lighter glassmorphism for list */
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+}
+
+.output-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    color: #ffffff; /* White text for list items */
+    /* Animasi fade-in dan slide-up */
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.4s ease-out, transform 0.4s ease-out; /* Transisi untuk muncul */
+}
+
+.output-item.fade-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.output-item:last-child {
+    border-bottom: none;
+}
+
+.output-item span {
+    flex-grow: 1;
+    word-break: break-all;
+    padding-right: 10px;
+}
+
+.output-item button.copy-btn {
+    background-color: #7B68EE; /* Warna baru: mediumslateblue */
+    color: white;
+    padding: 8px 15px;
+    font-size: 0.9em;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(123, 104, 238, 0.3); /* Disesuaikan dengan warna baru */
+    cursor: pointer; /* Kursor pointer untuk tombol salin */
+}
+
+.output-item button.copy-btn:hover {
+    background-color: #6A5ACD; /* Warna hover yang sedikit lebih gelap */
+    transform: translateY(-1px);
+    box-shadow: 0 3px 7px rgba(123, 104, 238, 0.4); /* Disesuaikan dengan warna baru */
+}
+
+.output-item button.copy-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 1px 3px rgba(123, 104, 238, 0.2);
+}
+
+/* Message box for copy feedback */
+.message-box {
+    position: fixed;
+    bottom: 80px; /* Disesuaikan untuk ruang footer */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 0.9em;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    pointer-events: none;
+    z-index: 1000;
+}
+
+.message-box.show {
+    opacity: 1;
+}
+
+/* Footer styling */
+.footer {
+    position: absolute; /* Dikembalikan ke absolute */
+    bottom: 0; /* Dikembalikan ke bottom 0 */
+    width: 100%;
+    text-align: center;
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.2); /* Semi-transparent black */
+    color: rgb(255, 255, 255);
+    font-size: 0.9em;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    body {
+        padding: 15px;
+    }
+
+    .container {
+        padding: 20px;
+        gap: 25px; /* Sesuaikan gap untuk layar kecil */
+        margin-bottom: 70px; /* Ruang untuk footer pada layar kecil */
+    }
+
+    h1 {
+        font-size: 1.8em;
+        margin-bottom: 15px;
+    }
+
+    button {
+        width: 100%;
+    }
+
+    .button-group {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .output-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .output-item span {
+        padding-right: 0;
+    }
+
+    .output-item button.copy-btn {
+        width: 100%;
+    }
+
+    .message-box {
+        bottom: 90px;
+    }
+
+    .footer {
+        padding: 10px;
+    }
+}
